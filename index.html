@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="미스트롯, 미스터트롯, 현역가왕 등 공중파·종편 트로트 프로그램의 편성표·진행상황·투표 방법을 한 곳에 모은 정보 사이트">
+<meta property="og:title" content="트롯본방 - 트로트 프로그램 편성표 & 진행상황">
+<meta property="og:description" content="방송사별 트로트 프로그램을 모아보고 편성표·진행상황·투표방법을 확인하세요">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%8E%A4%3C/text%3E%3C/svg%3E">
+<title>트롯본방 - 트로트 프로그램 편성표 & 진행상황</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="/style.css">
+<link rel="canonical" href="https://trotbonbang.com/">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark">🎤 트롯본방</span>
+      <span class="brand-tagline">본방사수 필수 — 트로트 편성표 &amp; 진행상황</span>
+    </div>
+    <nav class="site-nav">
+      <a class="nav-btn" id="nav-home" href="#" aria-current="page">홈</a>
+      <a class="nav-btn" id="nav-schedule" href="#schedule">편성표 보기</a>
+      <a class="nav-btn" id="nav-ended" href="#ended">종영 프로그램</a>
+      <a class="nav-btn" id="nav-posts" href="#posts">곡 이야기</a>
+    </nav>
+  </div>
+</header>
+<div class="demo-strip">
+  <div class="wrap">
+    <span class="msg">🔔 데모 버전입니다 · 방송사·편성 정보는 실제 보도자료를 참고했으며, 사진은 저작권 문제로 예시 아바타로 표시했습니다</span>
+    <span class="updated">🕓 최근 업데이트 2026.09.13</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- ===== HOME VIEW ===== -->
+  <section id="view-home">
+    <div class="wrap">
+      <div class="intro">
+        <h1>오늘 어떤 트롯 프로그램 하지?</h1>
+        <p>공중파·종편에서 방영 중이거나 방영 예정인 트로트 프로그램을 방송사별로 모아봤어요. 프로그램을 눌러 진행상황과 투표 방법을 확인하세요. 종영한 프로그램은 <a href="#ended">종영 프로그램</a> 탭에서 볼 수 있어요.</p>
+      </div>
+      <div class="ad-slot">광고 영역<span>AdSense 배치 예시 · 실제 광고 아님</span></div>
+      <div id="broadcaster-sections"></div>
+    </div>
+  </section>
+
+  <!-- ===== SCHEDULE VIEW ===== -->
+  <section id="view-schedule" hidden>
+    <div class="wrap">
+      <div class="page-head">
+        <h1>주간 편성표</h1>
+        <p>요일 · 시간순으로 정리한 트로트 프로그램 편성표예요.</p>
+      </div>
+      <div id="week-grid" class="week-grid"></div>
+      <p class="sched-footnote" style="font-size:0.85rem;">※ 방송 편성은 특집·이슈에 따라 변경될 수 있어요. 정확한 시간은 방송사 공식 채널에서 다시 확인해 주세요.</p>
+      <div class="ad-slot">광고 영역<span>AdSense 배치 예시 · 실제 광고 아님</span></div>
+      <div class="other-progs">
+        <h2>정규 편성 외 (방영 예정)</h2>
+        <ul id="other-list" class="other-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ENDED PROGRAMS VIEW ===== -->
+  <section id="view-ended" hidden>
+    <div class="wrap">
+      <div class="page-head">
+        <h1>종영 프로그램</h1>
+        <p>방영을 마친 트로트 프로그램들이에요. 최종 TOP 순위와 참가자들이 마지막으로 부른 곡, 프로그램 현황을 정리했어요.</p>
+      </div>
+      <div id="ended-list"></div>
+    </div>
+  </section>
+
+  <!-- ===== POSTS LIST VIEW ===== -->
+  <section id="view-posts" hidden>
+    <div class="wrap">
+      <div class="page-head">
+        <h1>곡 이야기</h1>
+        <p>방송에서 다시 조명된 트로트 명곡들의 배경과, 그 곡을 다시 부른 무대 이야기를 정리했어요.</p>
+      </div>
+      <div id="posts-list"></div>
+    </div>
+  </section>
+
+  <!-- ===== POST DETAIL VIEW ===== -->
+  <section id="view-post" hidden>
+    <div class="wrap">
+      <button class="back-btn" id="post-back">← 목록으로</button>
+      <div id="post-content"></div>
+    </div>
+  </section>
+
+  <!-- ===== DETAIL VIEW ===== -->
+  <section id="view-detail" hidden>
+    <div class="wrap">
+      <button class="back-btn" id="detail-back">← 목록으로</button>
+      <div id="detail-content"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  ⓒ 2026 트롯본방 (데모) · 문의 privacy@fotiblabs.com
+</footer>
+
+<script src="/data.js"></script>
+<script src="/templates.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  function renderHome(){
+    var wrapEl = document.getElementById("broadcaster-sections");
+    var html = "";
+    BROADCASTER_ORDER.forEach(function(bc){
+      var list = PROGRAMS.filter(function(p){ return p.broadcaster === bc && p.statusTone !== "ended"; });
+      if(!list.length) return;
+      var dotColor = list[0].accent;
+      html += '<div class="broadcaster-block">'+
+        '<div class="broadcaster-head">'+
+          '<span class="broadcaster-dot" style="--dot-color:'+dotColor+'"></span>'+
+          '<h2>'+esc(bc)+'</h2>'+
+          '<span class="broadcaster-count">프로그램 '+list.length+'개</span>'+
+        '</div>'+
+        '<div class="card-grid">'+ list.map(cardHtml).join("") +'</div>'+
+      '</div>';
+    });
+    wrapEl.innerHTML = html;
+  }
+
+  function renderSchedule(){
+    var grid = document.getElementById("week-grid");
+    var todayIdx = (new Date().getDay() + 6) % 7; // 0=월
+    var html = "";
+    DAY_ORDER.forEach(function(day, idx){
+      var list = PROGRAMS.filter(function(p){ return p.airDay === day; })
+        .sort(function(a,b){ return (a.airTime||"").localeCompare(b.airTime||""); });
+      html += '<div class="day-col'+(idx===todayIdx ? ' is-today' : '')+'">'+
+        '<span class="day-label">'+day+'요일'+(idx===todayIdx ? ' <small>오늘</small>' : '')+'</span>'+
+        (list.length ? list.map(schedChip).join("") : '<span class="day-empty">정규 편성 없음</span>')+
+      '</div>';
+    });
+    grid.innerHTML = html;
+
+    var others = PROGRAMS.filter(function(p){
+      return DAY_ORDER.indexOf(p.airDay) === -1 && p.statusTone !== "ended";
+    });
+    var otherList = document.getElementById("other-list");
+    otherList.innerHTML = others.map(function(p){
+      return '<li class="other-chip" data-id="'+p.id+'" style="--acc:'+p.accent+'">'+
+        '<span class="dot"></span>'+esc(p.title)+' · '+esc(p.broadcaster)+' '+statusPill(p)+
+      '</li>';
+    }).join("");
+  }
+
+  function renderEnded(){
+    var el = document.getElementById("ended-list");
+    if(!el) return;
+    var list = PROGRAMS.filter(function(p){ return p.statusTone === "ended"; });
+    el.innerHTML = '<div class="past-season-list">'+ list.map(endedCardHtml).join("") +'</div>';
+  }
+
+  function renderPosts(){
+    var el = document.getElementById("posts-list");
+    if(!el) return;
+    el.innerHTML = '<div class="post-list">'+ POSTS.map(postCardHtml).join("") +'</div>';
+  }
+
+  function openPost(slug){
+    var post = postBySlug[slug];
+    if(!post) return;
+    document.getElementById("post-content").innerHTML = postDetailHtml(post);
+    showView("post");
+    window.scrollTo({top:0, behavior:"instant"});
+  }
+
+  function openDetail(id){
+    var p = byId[id];
+    if(!p) return;
+    document.getElementById("detail-content").innerHTML = detailHtml(p);
+    showView("detail");
+    window.scrollTo({top:0, behavior:"instant"});
+  }
+
+  function showView(name){
+    ["home","schedule","ended","posts","post","detail"].forEach(function(v){
+      document.getElementById("view-"+v).hidden = (v !== name);
+    });
+    document.getElementById("nav-home").removeAttribute("aria-current");
+    document.getElementById("nav-schedule").removeAttribute("aria-current");
+    document.getElementById("nav-ended").removeAttribute("aria-current");
+    document.getElementById("nav-posts").removeAttribute("aria-current");
+    if(name === "home") document.getElementById("nav-home").setAttribute("aria-current","page");
+    if(name === "schedule") document.getElementById("nav-schedule").setAttribute("aria-current","page");
+    if(name === "ended") document.getElementById("nav-ended").setAttribute("aria-current","page");
+    if(name === "posts" || name === "post") document.getElementById("nav-posts").setAttribute("aria-current","page");
+  }
+
+  function routeFromHash(){
+    var h = location.hash;
+    if(h.indexOf("#program/") === 0){
+      openDetail(h.slice(9));
+    } else if(h.indexOf("#post/") === 0){
+      openPost(h.slice(6));
+    } else if(h === "#schedule"){
+      showView("schedule");
+    } else if(h === "#ended"){
+      showView("ended");
+      window.scrollTo({top:0, behavior:"instant"});
+    } else if(h === "#posts"){
+      showView("posts");
+      window.scrollTo({top:0, behavior:"instant"});
+    } else {
+      showView("home");
+    }
+  }
+
+  document.addEventListener("click", function(e){
+    var toggleBtn = e.target.closest("[data-toggle]");
+    if(toggleBtn){
+      var panel = document.getElementById(toggleBtn.getAttribute("data-toggle"));
+      if(panel){
+        panel.hidden = !panel.hidden;
+        toggleBtn.setAttribute("aria-expanded", String(!panel.hidden));
+        toggleBtn.querySelector(".toggle-label").textContent = panel.hidden ? "자세히 보기" : "접기";
+        toggleBtn.querySelector(".chevron").style.transform = panel.hidden ? "" : "rotate(180deg)";
+      }
+      return;
+    }
+    var card = e.target.closest("[data-id]:not(a)");
+    if(card){
+      location.hash = "#program/" + card.getAttribute("data-id");
+    }
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Enter" || e.key === " "){
+      var card = e.target.closest("[data-id]:not(a)");
+      if(card){
+        e.preventDefault();
+        location.hash = "#program/" + card.getAttribute("data-id");
+      }
+    }
+  });
+  document.getElementById("detail-back").addEventListener("click", function(){
+    history.length > 1 ? history.back() : (location.hash = "");
+  });
+  document.getElementById("post-back").addEventListener("click", function(){
+    history.length > 1 ? history.back() : (location.hash = "#posts");
+  });
+
+  window.addEventListener("hashchange", routeFromHash);
+
+  renderHome();
+  renderSchedule();
+  renderEnded();
+  renderPosts();
+  routeFromHash();
+})();
+</script>
+</body>
+</html>
